@@ -819,9 +819,7 @@
 							<ul class="contact_details">
 								<li class="phone"><i class="icon-phone"></i><a href="tel:+33181145084"
 										onclick="_paq.push(['trackLink', 'clic-tel/top.html', 'link']);">Tél : +33 7 56 93 99 64</a></li>
-								<li class="mail"><i class="icon-mail-line"></i><a href="contact/index.html"
-										onclick="_paq.push(['trackLink', 'envoi-email/top.html', 'link']);">Demande de
-										devis</a></li>
+
 								<li class="btn-menu-2 btn-temoignages"><a
 										href="temoignage-client/index.html">Témoignages</a></li>
 								<li class="btn-menu-2 btn-faq"><a href="foire-aux-questions/index.html">FAQ</a></li>
@@ -2629,6 +2627,7 @@
 												</div>
 											</div>
 										</div>
+=======================================================
 										<div class="vc_row-full-width vc_clearfix"></div>
 										<div class="vc_row wpb_row vc_row-fluid">
 											<div class="wpb_column vc_column_container vc_col-sm-12">
@@ -2660,37 +2659,77 @@
 											</div>
 											<div class="wpb_column vc_column_container vc_col-sm-6">
 												<div class="vc_column-inner vc_custom_1704899173425">
+											<!-- INSERT_YOUR_CODE -->
+											<div class="wpb_wrapper">
+												<div class="wpb_text_column wpb_content_element gros-titre upper">
+													<div class="wpb_wrapper">
+														<p style="text-align: center;">Avis clients</p>
+													</div>
+												</div>
+												<div id="carousel-avis-clients" class="avis-clients-carousel" style="max-width: 600px; margin: 0 auto;">
+													<div class="avis-slide" style="display: block;">
+														<div style="background: #f7f7f7; border-radius: 18px; padding: 32px 26px; margin: 0 10px; text-align: center;">
+															<p style="font-size: 1.2em; font-style: italic; color: #333;">"Service irréprochable, rapidité d’expédition et suivi au top ! Je recommande COLYVA les yeux fermés."</p>
+															<p style="font-weight: 700; color: #01b5cd;">– Isabelle P., e-commerçante</p>
+														</div>
+													</div>
+													<div class="avis-slide" style="display: none;">
+														<div style="background: #f7f7f7; border-radius: 18px; padding: 32px 26px; margin: 0 10px; text-align: center;">
+															<p style="font-size: 1.2em; font-style: italic; color: #333;">"Nous avons trouvé chez COLYVA un partenaire fiable qui sait s'adapter à nos demandes spécifiques."</p>
+															<p style="font-weight: 700; color: #01b5cd;">– Thomas G., dirigeant PME</p>
+														</div>
+													</div>
+													<div class="avis-slide" style="display: none;">
+														<div style="background: #f7f7f7; border-radius: 18px; padding: 32px 26px; margin: 0 10px; text-align: center;">
+															<p style="font-size: 1.2em; font-style: italic; color: #333;">"Équipe à l’écoute, solutions efficaces, et un vrai sens du service client."</p>
+															<p style="font-weight: 700; color: #01b5cd;">– Marine L., fondatrice marque D2C</p>
+														</div>
+													</div>
+													<div style="margin-top: 16px; text-align: center;">
+														<button id="avis-prev" style="margin: 0 7px; border: none; background: #e0e0e0; border-radius: 50%; width: 34px; height: 34px; font-size: 20px; cursor: pointer;">‹</button>
+														<button id="avis-next" style="margin: 0 7px; border: none; background: #e0e0e0; border-radius: 50%; width: 34px; height: 34px; font-size: 20px; cursor: pointer;">›</button>
+													</div>
+												</div>
+											</div>
+											<script>
+												(function() {
+													var slides = document.querySelectorAll('#carousel-avis-clients .avis-slide');
+													var current = 0;
+													var prevBtn = document.getElementById('avis-prev');
+													var nextBtn = document.getElementById('avis-next');
+													function showSlide(index) {
+														slides.forEach(function(slide, i) {
+															slide.style.display = i === index ? 'block' : 'none';
+														});
+													}
+													if(prevBtn && nextBtn && slides.length > 0) {
+														prevBtn.addEventListener('click', function() {
+															current = (current - 1 + slides.length) % slides.length;
+															showSlide(current);
+														});
+														nextBtn.addEventListener('click', function() {
+															current = (current + 1) % slides.length;
+															showSlide(current);
+														});
+														showSlide(current);
+													}
+												})();
+											</script>
+											</div>
+										</div>
+
+=======================================================
+=======================================================
+										<div class="vc_row-full-width vc_clearfix"></div>
+										<div class="vc_row wpb_row vc_row-fluid">
+											<div class="wpb_column vc_column_container vc_col-sm-12">
+												<div class="vc_column-inner">
 													<div class="wpb_wrapper">
 														<div
-															class="wpb_text_column wpb_content_element  demi-encart demi-encart-d liste-style-petale">
+															class="wpb_text_column wpb_content_element  gros-titre upper">
 															<div class="wpb_wrapper">
-																<ul>
-																	<li>Les activités classiques de <strong
-																			class="d2b">logistique</strong> pour
-																		l’<strong class="d2b">envoi de colis</strong> :
-																		Réception de colis, <strong class="d2b">stockage
-																			de colis</strong> ou en palette, <a
-																			href="preparation-de-commande-e-commerce/index.html">préparation
-																			de commande</a>, expédition, transport et <a
-																			href="gestion-des-retours-clients-e-commerce/index.html">gestion
-																			des retours clients</a></li>
-																	<li>Stratégie de flux tendus et/ou gestion
-																		informatisée des stocks en boutique</li>
-																	<li>Un <a
-																			href="systeme-information-tracking-suivi-colis/index.html">système
-																			d’information</a> dédié e-Commerce
-																		permettant le suivi de vos réceptions, de vos
-																		stocks et des commandes clients</li>
-																	<li>Des procédures d’envoi de colis spécifiques afin
-																		de s’assurer de la bonne livraison de toutes
-																		commandes effectuées</li>
-																	<li>Le Tracking complet du colis dès la sortie de
-																		l’entrepôt pour suivre en temps réel sa
-																		localisation</li>
-																	<li>Un équipe dédiée en vu de garantir le cycle
-																		complet de la commande et pour répondre à vos
-																		attentes</li>
-																</ul>
+																<p style="text-align: center;">Que fait COLYVA pour vous
+																	?</p>
 
 															</div>
 														</div>
@@ -2698,6 +2737,71 @@
 												</div>
 											</div>
 										</div>
+										<div data-vc-full-width="true" data-vc-full-width-init="false"
+											data-vc-stretch-content="true"
+											class="vc_row wpb_row vc_row-fluid invert vc_row-no-padding">
+											<div class="vc_column vc_col-sm-12">
+												<div class="vc_column-inner">
+													<div class="wpb_wrapper">
+														<div class="wpb_text_column wpb_content_element gros-titre upper">
+															<div class="wpb_wrapper">
+																<p style="text-align: center;">Avis clients</p>
+															</div>
+														</div>
+														<div id="carousel-avis-clients" class="avis-clients-carousel" style="max-width: 700px; margin: 0 auto;">
+															<div class="avis-slide" style="display: block;">
+																<div style="background: #f7f7f7; border-radius: 18px; padding: 32px 26px; margin: 0 10px; text-align: center;">
+																	<p style="font-size: 1.2em; font-style: italic; color: #333;">"Service irréprochable, rapidité d’expédition et suivi au top ! Je recommande COLYVA les yeux fermés."</p>
+																	<p style="font-weight: 700; color: #01b5cd;">– Isabelle P., e-commerçante</p>
+																</div>
+															</div>
+															<div class="avis-slide" style="display: none;">
+																<div style="background: #f7f7f7; border-radius: 18px; padding: 32px 26px; margin: 0 10px; text-align: center;">
+																	<p style="font-size: 1.2em; font-style: italic; color: #333;">"Nous avons trouvé chez COLYVA un partenaire fiable qui sait s'adapter à nos demandes spécifiques."</p>
+																	<p style="font-weight: 700; color: #01b5cd;">– Thomas G., dirigeant PME</p>
+																</div>
+															</div>
+															<div class="avis-slide" style="display: none;">
+																<div style="background: #f7f7f7; border-radius: 18px; padding: 32px 26px; margin: 0 10px; text-align: center;">
+																	<p style="font-size: 1.2em; font-style: italic; color: #333;">"Équipe à l’écoute, solutions efficaces, et un vrai sens du service client."</p>
+																	<p style="font-weight: 700; color: #01b5cd;">– Marine L., fondatrice marque D2C</p>
+																</div>
+															</div>
+															<div style="text-align: center; margin-top: 18px;">
+																<button class="carousel-prev" style="background:#e0e0e0;border:none;border-radius:50%;width:36px;height:36px;margin-right:10px;cursor:pointer;font-weight:bold;">&#8592;</button>
+																<button class="carousel-next" style="background:#e0e0e0;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-weight:bold;">&#8594;</button>
+															</div>
+														</div>
+														<script>
+															(function(){
+																var slides = document.querySelectorAll("#carousel-avis-clients .avis-slide");
+																var index = 0;
+																function showSlide(i) {
+																	slides.forEach(function(slide, idx){
+																		slide.style.display = (idx === i) ? "block" : "none";
+																	});
+																}
+																document.querySelector("#carousel-avis-clients .carousel-next").onclick = function(){
+																	index = (index + 1) % slides.length;
+																	showSlide(index);
+																};
+																document.querySelector("#carousel-avis-clients .carousel-prev").onclick = function(){
+																	index = (index - 1 + slides.length) % slides.length;
+																	showSlide(index);
+																};
+																showSlide(index);
+															})();
+														</script>
+													</div>
+												</div>
+											</div>
+											</div>
+										</div>
+
+=======================================================
+
+
+=======================================================
 										<div class="vc_row-full-width vc_clearfix"></div>
 										<div data-vc-full-width="true" data-vc-full-width-init="false"
 											data-vc-stretch-content="true"
