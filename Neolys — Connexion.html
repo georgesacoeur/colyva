@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neolys — Connexion</title>
+<style>
+  :root {
+    --teal: #17b6b0;
+    --teal-hover: #14a19b;
+    --overlay-dark: rgba(10, 14, 18, 0.35);
+    --field-bg: rgba(40, 38, 36, 0.55);
+    --field-border: rgba(255, 255, 255, 0.12);
+    --text-light: rgba(255, 255, 255, 0.92);
+    --text-muted: rgba(255, 255, 255, 0.55);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    position: relative;
+    overflow-x: hidden;
+    /* Grey fallback and image background */
+    background: #7b7d7e url('./img/login-bg-15.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-light);
+  }
+
+  .scene,
+  .scene::before,
+  .mountains {
+    display: none !important;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    background: var(--overlay-dark);
+  }
+
+  .login-wrap {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .brand img {
+    height: 34px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .tagline {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 2px 0 22px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .field {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--field-bg);
+    border: 1px solid var(--field-border);
+    border-radius: 5px;
+    color: var(--text-light);
+    font-size: 14.5px;
+    backdrop-filter: blur(2px);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .field::placeholder {
+    color: var(--text-muted);
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: rgba(23, 182, 176, 0.65);
+    background: rgba(40, 38, 36, 0.72);
+  }
+
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 4px 0 4px;
+    user-select: none;
+    cursor: pointer;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .remember input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .remember input[type="checkbox"]:checked {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+
+  .remember input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid #0c1116;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .remember input[type="checkbox"]:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  button.submit {
+    width: 100%;
+    padding: 14px 16px;
+    margin-top: 6px;
+    background: var(--teal);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
+  }
+
+  button.submit:hover { background: var(--teal-hover); }
+  button.submit:active { transform: translateY(1px); }
+
+  button.submit:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  .status {
+    min-height: 18px;
+    font-size: 13px;
+    color: #ffb4b4;
+    margin-top: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .login-wrap { animation: fade-up 0.5s ease both; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 420px) {
+    .login-wrap { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="login-wrap">
+    <div class="brand">
+      <!-- Emplacement réservé au logo : remplacez src par le fichier logo réel -->
+      <img src="./img/logo colyva.png" alt="Colyva" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<span style=\'font-size:100px;font-weight:700;color:#fff;letter-spacing:-0.01em\'>Neolys</span>')">
+    </div>
+    <p class="tagline">Systeme d'information logistique</p>
+
+    <form id="login-form" novalidate>
+      <input class="field" type="text" id="login" name="login" placeholder="Login" autocomplete="username" required>
+      <input class="field" type="password" id="password" name="password" placeholder="Password" autocomplete="current-password" required>
+
+      <label class="remember" for="remember-me">
+        <input type="checkbox" id="remember-me" name="remember">
+        Se souvenir de moi
+      </label>
+
+      <button type="submit" class="submit">Se connecter</button>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const login = document.getElementById('login').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!login || !password) {
+        status.textContent = 'Merci de renseigner votre login et votre mot de passe.';
+        return;
+      }
+      status.style.color = '#8be8c3';
+      status.textContent = 'Connexion en cours...';
+      // Placeholder: hook this up to a real auth endpoint.
+      setTimeout(() => {
+        status.textContent = 'Ceci est une maquette — aucune authentification réelle n\'est effectuée.';
+        status.style.color = 'rgba(255,255,255,0.6)';
+      }, 900);
+    });
+  </script>
+
+</body>
+</html>
