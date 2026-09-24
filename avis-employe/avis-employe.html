@@ -1,0 +1,417 @@
+<!-- ==========================================
+     START: Avis Employés Carousel Component
+     (Self-contained HTML, CSS, JS block)
+     ========================================== -->
+     <style>
+        .emp-reviews-container {
+          background-color: #ffffff;
+          padding: 0rem 1.5rem;
+          width: 100%;
+          box-sizing: border-box;
+          font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          color: #2c3e50;
+          overflow: hidden;
+        }
+      
+        .emp-reviews-inner {
+          max-width: 850px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          position: relative;
+        }
+      
+        /* Title Header & Underline */
+        .emp-reviews-title-wrap {
+          display: inline-block;
+          position: relative;
+          margin-bottom: 2.25rem;
+        }
+      
+        .emp-reviews-title {
+          font-size: 2.15rem;
+          font-weight: 700;
+          color: #0b132a;
+          margin: 0 0 0.75rem 0;
+          letter-spacing: -0.01em;
+        }
+      
+        .emp-reviews-title-underline {
+          width: 100%;
+          height: 4px;
+          background-color: #0c3b7a;
+          border-radius: 2px;
+          margin: 0 auto;
+        }
+      
+        .emp-reviews-carousel {
+          width: 100%;
+          position: relative;
+          margin-bottom: 1.5rem;
+        }
+      
+        .emp-reviews-track-container {
+          overflow: hidden;
+          width: 100%;
+        }
+      
+        .emp-reviews-track {
+          display: flex;
+          transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+          width: 100%;
+        }
+      
+        .emp-review-slide {
+          min-width: 100%;
+          box-sizing: border-box;
+          padding: 0 1.25rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      
+        /* Subtitle / Catchphrase */
+        .emp-review-subtitle {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #0b132a;
+          margin: 0 0 1rem 0;
+        }
+      
+        /* Stars */
+        .emp-review-stars {
+          display: flex;
+          gap: 0.35rem;
+          color: #0c3b7a;
+          margin-bottom: 1.5rem;
+        }
+      
+        .emp-review-stars svg {
+          width: 26px;
+          height: 26px;
+          fill: currentColor;
+        }
+      
+        /* Review Text Body */
+        .emp-review-text {
+          font-size: 1.1rem;
+          line-height: 1.65;
+          color: #4a5568;
+          max-width: 720px;
+          margin: 0 0 1.75rem 0;
+        }
+      
+        /* Author & Quote Icon */
+        .emp-reviewer-info {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.65rem;
+        }
+      
+        .emp-quote-icon {
+          width: 32px;
+          height: 32px;
+          fill: #0c3b7a;
+        }
+      
+        .emp-reviewer-name {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #2d3748;
+          margin: 0;
+        }
+      
+        .emp-carousel-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          color: #0c3b7a;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+          transition: all 0.25s ease;
+          z-index: 10;
+        }
+      
+        .emp-carousel-btn:hover {
+          background-color: #0c3b7a;
+          color: #ffffff;
+          border-color: #0c3b7a;
+          box-shadow: 0 4px 12px rgba(12, 59, 122, 0.3);
+        }
+      
+        .emp-carousel-btn.prev {
+          left: -18px;
+        }
+      
+        .emp-carousel-btn.next {
+          right: -18px;
+        }
+      
+        .emp-carousel-btn svg {
+          width: 22px;
+          height: 22px;
+          fill: currentColor;
+        }
+      
+        .emp-carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 0.5rem;
+        }
+      
+        .emp-carousel-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #cbd5e0;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          transition: all 0.3s ease;
+        }
+      
+        .emp-carousel-dot.active {
+          background-color: #0c3b7a;
+          width: 26px;
+          border-radius: 5px;
+        }
+      
+        @media (max-width: 640px) {
+          .emp-reviews-container {
+            padding: 2.5rem 1rem;
+          }
+      
+          .emp-reviews-title {
+            font-size: 1.75rem;
+          }
+      
+          .emp-review-subtitle {
+            font-size: 1.1rem;
+          }
+      
+          .emp-review-text {
+            font-size: 1rem;
+          }
+      
+          .emp-carousel-btn.prev {
+            left: -5px;
+          }
+      
+          .emp-carousel-btn.next {
+            right: -5px;
+          }
+        }
+      </style>
+      
+      <section class="emp-reviews-container">
+        <div class="emp-reviews-inner">      
+          <!-- Carousel Section -->
+          <div class="emp-reviews-carousel" id="empCarousel">
+            
+            <!-- Previous Button -->
+            <button class="emp-carousel-btn prev" id="empPrevBtn" aria-label="Avis précédent">
+              <svg viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+              </svg>
+            </button>
+      
+            <!-- Slides Container -->
+            <div class="emp-reviews-track-container">
+              <div class="emp-reviews-track" id="empTrack">
+                
+                <!-- Slide 1: Katty T. (Original image content) -->
+                <div class="emp-review-slide">
+                  <h3 class="emp-review-subtitle">Une équipe bienveillante et engagée !</h3>
+                  <div class="emp-review-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  </div>
+                  <p class="emp-review-text">Depuis que j'ai rejoint colyva, j'ai découvert un environnement de travail stimulant où l'avis de chacun compte. Les projets sont variés et l'équipe toujours motivée à donner le meilleur d'elle-même !</p>
+                  <div class="emp-reviewer-info">
+                    <svg class="emp-quote-icon" viewBox="0 0 24 24">
+                      <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                    </svg>
+                    <span class="emp-reviewer-name">Katty T. (Graphiste)</span>
+                  </div>
+                </div>
+      
+                <!-- Slide 2: Thomas L. -->
+                <div class="emp-review-slide">
+                  <h3 class="emp-review-subtitle">Une formidable opportunité d'évolution !</h3>
+                  <div class="emp-review-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  </div>
+                  <p class="emp-review-text">Rejoindre l'équipe technique a été le meilleur choix de ma carrière. L'entraide entre développeurs et la confiance accordée sur les choix d'architecture permettent de monter très rapidement en compétences.</p>
+                  <div class="emp-reviewer-info">
+                    <svg class="emp-quote-icon" viewBox="0 0 24 24">
+                      <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                    </svg>
+                    <span class="emp-reviewer-name">Thomas L. (Développeur Web)</span>
+                  </div>
+                </div>
+      
+                <!-- Slide 3: Sophie M. -->
+                <div class="emp-review-slide">
+                  <h3 class="emp-review-subtitle">Autonomie, écoute et convivialité !</h3>
+                  <div class="emp-review-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  </div>
+                  <p class="emp-review-text">La culture de l'entreprise place véritablement l'humain au cœur du quotidien. Le management est à l'écoute, ce qui facilite grandement la gestion de projet et l'épanouissement personnel.</p>
+                  <div class="emp-reviewer-info">
+                    <svg class="emp-quote-icon" viewBox="0 0 24 24">
+                      <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                    </svg>
+                    <span class="emp-reviewer-name">Sophie M. (Chef de Projet)</span>
+                  </div>
+                </div>
+      
+              </div>
+            </div>
+      
+            <!-- Next Button -->
+            <button class="emp-carousel-btn next" id="empNextBtn" aria-label="Avis suivant">
+              <svg viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
+            </button>
+      
+          </div>
+      
+          <!-- Pagination Dots Container -->
+          <div class="emp-carousel-dots" id="empDots"></div>
+      
+        </div>
+      </section>
+      
+      <script>
+        (function() {
+          const track = document.getElementById('empTrack');
+          const slides = Array.from(track.children);
+          const prevBtn = document.getElementById('empPrevBtn');
+          const nextBtn = document.getElementById('empNextBtn');
+          const dotsContainer = document.getElementById('empDots');
+          const carouselWrapper = document.getElementById('empCarousel');
+      
+          let currentIndex = 0;
+          let autoplayInterval = null;
+      
+          // Build pagination dots dynamically
+          slides.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.classList.add('emp-carousel-dot');
+            if (idx === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Aller à l'avis employé ${idx + 1}`);
+            dot.addEventListener('click', () => {
+              goToSlide(idx);
+              resetAutoplay();
+            });
+            dotsContainer.appendChild(dot);
+          });
+      
+          const dots = Array.from(dotsContainer.children);
+      
+          function goToSlide(index) {
+            if (index < 0) {
+              currentIndex = slides.length - 1;
+            } else if (index >= slides.length) {
+              currentIndex = 0;
+            } else {
+              currentIndex = index;
+            }
+      
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      
+            // Update dot states
+            dots.forEach((dot, idx) => {
+              dot.classList.toggle('active', idx === currentIndex);
+            });
+          }
+      
+          function nextSlide() {
+            goToSlide(currentIndex + 1);
+          }
+      
+          function prevSlide() {
+            goToSlide(currentIndex - 1);
+          }
+      
+          // Button Click Listeners
+          nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoplay();
+          });
+      
+          prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoplay();
+          });
+      
+          // Touch / Swipe Navigation
+          let startX = 0;
+          let endX = 0;
+      
+          track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+          }, { passive: true });
+      
+          track.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            if (startX - endX > 40) {
+              nextSlide();
+              resetAutoplay();
+            } else if (endX - startX > 40) {
+              prevSlide();
+              resetAutoplay();
+            }
+          }, { passive: true });
+      
+          // Autoplay logic (5 seconds per slide) & Pause on hover
+          function startAutoplay() {
+            if (!autoplayInterval) {
+              autoplayInterval = setInterval(nextSlide, 5000);
+            }
+          }
+      
+          function stopAutoplay() {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+          }
+      
+          function resetAutoplay() {
+            stopAutoplay();
+            startAutoplay();
+          }
+      
+          carouselWrapper.addEventListener('mouseenter', stopAutoplay);
+          carouselWrapper.addEventListener('mouseleave', startAutoplay);
+      
+          // Initialize Autoplay
+          startAutoplay();
+        })();
+      </script>
+      <!-- ==========================================
+           END: Avis Employés Carousel Component
+           ========================================== -->
