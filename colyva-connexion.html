@@ -239,7 +239,8 @@
       status.textContent = 'Connexion en cours...';
       // Placeholder: hook this up to a real auth endpoint.
       setTimeout(() => {
-        status.textContent = 'Ceci est une maquette — aucune authentification réelle n\'est effectuée.';
+        status.textContent = 'Échec';
+   
         status.style.color = 'rgba(255,255,255,0.6)';
       }, 900);
     });
